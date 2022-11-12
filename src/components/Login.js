@@ -1,16 +1,57 @@
 import { React, useState } from "react";
+import { useAuth } from "../context/authContext";
+import { useNavigate } from "react-router-dom";
 
-const Login = () => {
-  const [user, userState] = useState({
+const Register = () => {
+  const [user, setUser] = useState({
     email: "",
     password: "",
   });
 
+  const { signUp } = useAuth();
+  const navigate = useNavigate();
+  const [error, setError] = useState();
+
+  const handleChange = ({ target: { name, value } }) => {
+    setUser({ ...user, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    try {
+      await signUp(user.email, user.password);
+      navigate("/");
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
   return (
-    <form>
-      <input type="email" name="email" id="email" />
-      <input type="password" name="password" id="password" />
-    </form>
+    <div>
+      {error && <p>error</p>}
+
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="email">Email</label>
+        <input
+          type="email"
+          name="email"
+          placeholder="youremail@company.ltd"
+          onChange={handleChange}
+        />
+
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Password"
+          onChange={handleChange}
+        />
+
+        <button>Iniciar sesion</button>
+      </form>
+    </div>
   );
 };
 
