@@ -2,13 +2,13 @@ import { React, useState } from "react";
 import { useAuth } from "../context/authContext";
 import { useNavigate } from "react-router-dom";
 
-const Register = () => {
+const Login = () => {
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
 
-  const { signUp } = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate();
   const [error, setError] = useState();
 
@@ -20,7 +20,7 @@ const Register = () => {
     e.preventDefault();
     setError("");
     try {
-      await signUp(user.email, user.password);
+      await login(user.email, user.password);
       navigate("/");
     } catch (error) {
       setError(error.message);
@@ -49,7 +49,7 @@ const Register = () => {
           onChange={handleChange}
         />
 
-        <button>Iniciar sesion</button>
+        <button>Login</button>
       </form>
     </div>
   );
