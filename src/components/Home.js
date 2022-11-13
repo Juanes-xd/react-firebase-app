@@ -8,12 +8,16 @@ const Home = () => {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    await logout();
+    try {
+      await logout();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <div>
-      <h1>Welcome {user.email}</h1>
+      <h1>Welcome {user.email || user.displayName}</h1>
       <button onClick={handleLogout}>Cerrar sesion</button>
     </div>
   );
