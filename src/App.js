@@ -1,7 +1,9 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { Home, Login, Register } from "./components";
-import ProtectedRoutes from "./components/ProtectedRoutes";
+import { Home } from "./components/Home";
+import { Login } from "./components/Login";
+import { Register } from "./components/Register";
+import { ProtectedRoutes } from "./components/ProtectedRoutes";
 import { AuthProvider } from "./context/authContext";
 
 const App = () => {
@@ -13,7 +15,6 @@ const App = () => {
             path="/"
             element={
               <ProtectedRoutes>
-                {" "}
                 <Home />
               </ProtectedRoutes>
             }
