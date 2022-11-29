@@ -1,14 +1,15 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { Home } from "./components/Home";
-import { Login } from "./components/Login";
-import { Register } from "./components/Register";
+import { Login } from "./components/Login/Login";
+import { Register } from "./components/Register/Register";
 import { ProtectedRoutes } from "./components/ProtectedRoutes";
 import { AuthProvider } from "./context/authContext";
+import Pago from "./components/Checkout/Pago";
 
 const App = () => {
   return (
-    <div className="bg-gradient-to-b from-yellow-400 to-stone-800 h-screen text-black flex">
+    <div>
       <AuthProvider>
         <Routes>
           <Route
@@ -20,6 +21,7 @@ const App = () => {
             }
           />
           <Route path="/login" element={<Login />} />
+          <Route path="/Pago" element={<Pago />} />
           <Route path="/register" element={<Register />} />
         </Routes>
       </AuthProvider>
