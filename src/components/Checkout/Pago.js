@@ -12,7 +12,7 @@ export const products = [
     href: "#",
     color: "Salmon",
     price: 90000,
-    quantity: 1,
+    quantity: 2,
     imageSrc:
       "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg",
     imageAlt:
@@ -23,7 +23,7 @@ export const products = [
     name: "Medium Stuff Satchel",
     href: "#",
     color: "Blue",
-    price: 32000,
+    price: 20000,
     quantity: 1,
     imageSrc:
       "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg",
@@ -138,7 +138,9 @@ export default function Pago() {
                         <p>Total</p>
                         <p>
                           {products.reduce(
-                            (acum, product) => acum.price + product.price
+                            (acum, product) =>
+                              acum.price * acum.quantity +
+                              product.price * product.quantity
                           )}
                         </p>
                       </div>
@@ -155,7 +157,7 @@ export default function Pago() {
                             className="font-medium text-yellow-600 hover:text-yellow-500"
                             onClick={() => setOpen(false)}
                           >
-                            Continue Shopping
+                            Continar Comprando
                             <span aria-hidden="true"> &rarr;</span>
                           </button>
                         </p>

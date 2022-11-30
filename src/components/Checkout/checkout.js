@@ -1,6 +1,14 @@
 import React, { Component } from "react";
 import { products } from "./Pago";
 
+export const amount = (precios) => {
+  let final = precios.reduce(
+    (acum, product) =>
+      acum.price * acum.quantity + product.price * product.quantity
+  );
+  return `${final}`;
+};
+
 export default class Checkout extends Component {
   openchekout = (e) => {
     e.preventDefault();
@@ -9,11 +17,6 @@ export default class Checkout extends Component {
       key: "efef92030f96cd757fa9d11d0e026571",
       test: true,
     });
-
-    const amount = (precios) => {
-      let final = precios.reduce((acum, product) => acum.price + product.price);
-      return `${final}`;
-    };
 
     let data = {
       name: "Carrito",
